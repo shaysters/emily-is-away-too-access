@@ -1,0 +1,18 @@
+{
+  "manifestVersion": 1,
+  "kind": "game",
+  "id": "emily-is-away-too",
+  "name": "Emily is Away Too",
+  "detect": {
+    "steam": {
+      "appId": 523780,
+      "dirName": "Emily is Away Too"
+    },
+    "markers": [
+      "EmilyIsAwayToo.exe"
+    ]
+  },
+  "userData": {
+    "windows": "${localLow}/KyleSeeley/Emily Is Away Too"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "manifestVersion": 1,
+  "id": "emily-is-away-too-access",
+  "name": "Emily is Away Too Access",
+  "description": "Screen reader and braille accessibility for Emily is Away Too by Kyle Seeley, and for Emily Online, the messenger that comes with it. Reads both chat windows, the reply choices, what you type and the reply timers, makes the installer, menus, sign-in, buddy icons, buddy list, profiles and gallery work from the keyboard, and describes every buddy icon and picture. In Emily Online, reads your Steam friends' messages, statuses and profiles, and makes the message box and emotes work.",
+  "authors": [
+    "Shaysters",
+    "Claude"
+  ],
+  "game": "emily-is-away-too",
+  "distributions": {
+    "steam": "supported",
+    "standalone": "untested"
+  },
+  "dependencies": [
+    {
+      "id": "bepinex-5-win-x86"
+    },
+    {
+      "id": "bepinex-5-win-x86-emily-online"
+    }
+  ],
+  "channels": {
+    "stable": {
+      "source": "release"
+    }
+  },
+  "install": [
+    {
+      "step": "extract-archive",
+      "routes": [
+        {
+          "from": "BepInEx/plugins/EmilyIsAwayTooAccess/**",
+          "to": "${gameDir}/BepInEx/plugins/EmilyIsAwayTooAccess"
+        },
+        {
+          "from": "EmilyOnline/BepInEx/plugins/EmilyOnlineAccess/**",
+          "to": "${gameDir}/EmilyOnline/BepInEx/plugins/EmilyOnlineAccess"
+        },
+        {
+          "from": "EmilyIsAwayTooAccess-README.md",
+          "to": "${gameDir}/EmilyIsAwayTooAccess-README.md"
+        },
+        {
+          "from": "EmilyIsAwayTooAccess-CHANGELOG.md",
+          "to": "${gameDir}/EmilyIsAwayTooAccess-CHANGELOG.md"
+        }
+      ]
+    },
+    {
+      "step": "expect",
+      "checks": [
+        {
+          "fileExists": "${gameDir}/BepInEx/plugins/EmilyIsAwayTooAccess/EmilyIsAwayTooAccess.dll",
+          "message": "The download didn't contain the mod (no EmilyIsAwayTooAccess.dll)."
+        },
+        {
+          "fileExists": "${gameDir}/BepInEx/plugins/EmilyIsAwayTooAccess/prism.dll",
+          "message": "The download didn't contain the speech library (no prism.dll)."
+        },
+        {
+          "fileExists": "${gameDir}/EmilyOnline/BepInEx/plugins/EmilyOnlineAccess/EmilyOnlineAccess.dll",
+          "message": "The download didn't contain the Emily Online mod (no EmilyOnlineAccess.dll)."
+        }
+      ]
+    }
+  ],
+  "packaging": {
+    "artifacts": [
+      {
+        "file": "../dist/EmilyIsAwayTooAccess.zip"
+      }
+    ]
+  }
+}
