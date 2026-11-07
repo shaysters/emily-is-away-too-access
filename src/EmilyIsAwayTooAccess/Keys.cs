@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace EmilyIsAwayTooAccess
 {
-    // The mod's own keys. In a chat every key also types the next letter of your reply
-    // (that's how the game works), which is harmless: the reply is already chosen and
-    // nothing is sent until you press Enter.
+    // The mod's own keys. While you type a reply (every key types the next letter, that's
+    // how the game works), in a text box, or while typing your own answer, the letter keys
+    // belong to the typing: the mod's letter keys only work with Ctrl then (Ctrl+C, Ctrl+R...),
+    // and a key the mod uses doesn't also type a letter.
     //   Page Up / Page Down   previous / next line of the chat you're looking at
     //   Ctrl+End              the latest line
     //   C                     repeat the reply choices
@@ -37,6 +38,19 @@ namespace EmilyIsAwayTooAccess
             return Navigator.FocusedBox() != null || ChatState.FreeTyping() || CodeBoxFocused();
         }
 
+        // Anything being typed: a text box, your own answer, or a chosen reply that's being
+        // typed out (until it's sent).
+        public static bool Typing()
+        {
+            return TextEntryActive() || ChatState.TypingReply();
+        }
+
+        // A Ctrl key on its own: the game would count it as a typing key press.
+        public static bool CtrlDownAlone()
+        {
+            return Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl);
+        }
+
         private static bool CodeBoxFocused()
         {
             CodePopupBehavior p = CodePopupBehavior.Instance;
@@ -48,11 +62,17 @@ namespace EmilyIsAwayTooAccess
             try
             {
                 if (SettingsMenu.HoldsKeys) return;
+                bool used = true;
                 if (Input.GetKeyDown(KeyCode.PageUp)) Review(-1);
                 else if (Input.GetKeyDown(KeyCode.PageDown)) Review(1);
                 else if (Input.GetKeyDown(KeyCode.End) && Ctrl()) Review(int.MaxValue);
                 else if (Input.GetKeyDown(KeyCode.Home) && Ctrl()) Review(int.MinValue);
-                if (TextEntryActive()) return;
+                else used = false;
+                if (used) { UseKey(); return; }
+
+                // Letter keys: on their own only when nothing is being typed; with Ctrl always.
+                if (Typing() && !Ctrl()) return;
+                used = true;
                 if (Input.GetKeyDown(KeyCode.R)) Tell.Now(Tell.Last);
                 else if (Input.GetKeyDown(KeyCode.C)) ChatState.SayChoices();
                 else if (Input.GetKeyDown(KeyCode.T)) ChatState.SayTimers();
@@ -60,6 +80,8 @@ namespace EmilyIsAwayTooAccess
                 else if (Input.GetKeyDown(KeyCode.L) && Shift()) ChatState.PickOlderLink();
                 else if (Input.GetKeyDown(KeyCode.L)) ChatState.OpenLatestLink();
                 else if (Input.GetKeyDown(KeyCode.I)) ChatState.OpenBuddyProfile();
+                else used = false;
+                if (used) UseKey();
             }
             catch (Exception e) { Plugin.Log.LogError("Keys: " + e); }
         }

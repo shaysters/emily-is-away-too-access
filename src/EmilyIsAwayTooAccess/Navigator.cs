@@ -50,6 +50,7 @@ namespace EmilyIsAwayTooAccess
                 bool enter = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
                 bool space = Input.GetKeyDown(KeyCode.Space);
                 if (!(down || up || home || end || left || right || enter || space)) return;
+                if (ChatState.TypingReply() && !Keys.Ctrl()) return;   // every key types the reply
 
                 Selectable box = FocusedBox();
                 if (box != null && (left || right || space || home || end)) return;   // keys for editing the text

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 (2026-11-07)
+
+### Changed
+
+- While a reply is being typed, in a text box, or while typing your own answer, the mod's letter keys (c, t, w, l, i, r, m) and the arrow, Enter and Space keys no longer do mod things; they just type. Hold Ctrl to use them then (Ctrl+C, Ctrl+M, Ctrl+Up and so on). Page Up and Page Down still read the chat, and no longer type a letter.
+
 ## 1.0 (2026-11-07)
 
 The first release. Emily is Away Too can be played from start to finish with a screen reader: all five chapters with both story paths, the ending, the icon gallery and secret buddies. Emily Online, the messenger that comes with the game, is accessible too.

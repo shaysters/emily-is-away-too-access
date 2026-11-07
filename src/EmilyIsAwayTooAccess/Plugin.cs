@@ -11,7 +11,7 @@ namespace EmilyIsAwayTooAccess
     {
         public const string Id = "shaysters.emilyisawaytoo.access";
         public const string Title = "Emily is Away Too Access";
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.1";
 
         internal static ManualLogSource Log;
 

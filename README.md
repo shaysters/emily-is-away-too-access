@@ -121,12 +121,12 @@ In Emily Online the message box has the keyboard, so the mod's letter keys go wi
 
 Notes:
 
-- While you type a reply, every key also types a letter of it in the game, including the mod's keys. That's harmless: the reply is already decided, and nothing is sent until you press Enter. Up, Down, Home and End move around the controls instead of typing.
-- When a reply is ready to send, Enter sends it. To press a control at that moment, use Space.
+- While a reply is being typed (from picking it until it's sent), every key types it, and the mod's keys stay quiet. To use a mod key then, hold Ctrl: Ctrl+C, Ctrl+T, Ctrl+W, Ctrl+L, Ctrl+I, Ctrl+R and Ctrl+M work, and so do Ctrl with Up, Down, Home and End to move around the controls. The same goes while you're typing in a text box or typing your own answer. Page Up and Page Down always read back through the chat.
+- When a reply is ready to send, Enter sends it.
 
 ## Settings
 
-Press **m** anywhere in the game, except while typing in a text box or typing your own answer. Use Up and Down to move. Enter, Space, Left or Right changes a setting. Escape or **m** closes the list. The game is paused while the list is open: reply timers stop, and your keys don't type into your reply. Changes are saved immediately.
+Press **m** anywhere in the game, or **Ctrl+M** while you're typing (a reply, a text box or your own answer). Use Up and Down to move. Enter, Space, Left or Right changes a setting. Escape or **m** closes the list. The game is paused while the list is open: reply timers stop, and your keys don't type into your reply. Changes are saved immediately.
 
 - **Reply timers** (twice as long by default): off (no time limit), normal length, twice as long, or three times as long. Letting a timer run out is part of the story in places, so with timers off you can never miss a reply.
 - **Warn when a reply timer is running out** (on): say "10 seconds left" and "5 seconds left".

@@ -85,7 +85,7 @@ namespace EmilyIsAwayTooAccess
         }
     }
 
-    // The settings list, opened with M. Up/Down move, Left/Right/Enter/Space change the
+    // The settings list, opened with M (Ctrl+M while typing). Up/Down move, Left/Right/Enter/Space change the
     // value, Escape or M closes. The game is paused while it's open: time stops (so reply
     // timers wait) and the game's key listeners skip their turn, so keys only go to the list.
     internal class SettingsMenu : MonoBehaviour
@@ -104,7 +104,7 @@ namespace EmilyIsAwayTooAccess
             {
                 if (!Open)
                 {
-                    if (Input.GetKeyDown(KeyCode.M) && !Keys.TextEntryActive() && !HoldsKeys) Show();
+                    if (Input.GetKeyDown(KeyCode.M) && (Keys.Ctrl() || !Keys.Typing()) && !HoldsKeys) { Keys.UseKey(); Show(); }
                     return;
                 }
                 if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.M)) Close();
@@ -183,7 +183,7 @@ namespace EmilyIsAwayTooAccess
 
         private static bool Prefix(ref bool __result)
         {
-            if (!SettingsMenu.HoldsKeys && !Keys.ModUsedKeyThisFrame) return true;
+            if (!SettingsMenu.HoldsKeys && !Keys.ModUsedKeyThisFrame && !Keys.CtrlDownAlone()) return true;
             __result = true;   // still running; it tries again next frame
             return false;
         }

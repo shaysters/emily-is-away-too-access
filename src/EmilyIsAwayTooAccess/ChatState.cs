@@ -87,6 +87,13 @@ namespace EmilyIsAwayTooAccess
             return c != null && c.ReadyToSend;
         }
 
+        // A chosen reply is being typed out or is waiting to be sent.
+        public static bool TypingReply()
+        {
+            Chat c = Showing();
+            return c != null && (c.Writing || c.ReadyToSend);
+        }
+
         public static bool FreeTyping()
         {
             Chat c = Showing();

@@ -10,6 +10,9 @@ namespace EmilyIsAwayTooAccess
     // Used by the shared navigator: Enter is the game's Send while a message is ready.
     internal static class ChatState
     {
+        // Emily Online has no scripted replies; typing happens in its text box.
+        public static bool TypingReply() { return false; }
+
         public static bool EnterSendsNow()
         {
             ChatManagerBehavior m = OnlineChat.Window;
