@@ -327,16 +327,47 @@ namespace EmilyIsAwayTooAccess
             Tell.Now("Icon set to " + Icons.Name(t) + ".");
         }
 
-        // Filling in your profile: three questions answered with 1, 2, 3.
+        // Filling in your profile: three questions (music, movie, saying) answered with 1, 2, 3,
+        // read one at a time. The chats wait until it's done (see ProfileFirst).
+        private static readonly string[] Question = { "", "Question 1 of 3, music for your profile", "Question 2 of 3, a movie", "Question 3 of 3, a saying" };
+        private static string _picked;
+
+        public static string QuestionFor(BuddyInfoManagerBehavior b, TextLinkButton link)
+        {
+            if (System.Array.IndexOf(b.profile1Labels, link) >= 0) return "Music";
+            if (System.Array.IndexOf(b.profile2Labels, link) >= 0) return "Movie";
+            if (System.Array.IndexOf(b.profile3Labels, link) >= 0) return "Saying";
+            return null;
+        }
+
+        // Remember which answer was picked, to say it back.
+        [HarmonyPrefix, HarmonyPatch(typeof(BuddyInfoManagerBehavior), nameof(BuddyInfoManagerBehavior.SetProfileInfo1))]
+        private static void Picked1(BuddyInfoManagerBehavior __instance) { RememberPick(__instance, 0); }
+        [HarmonyPrefix, HarmonyPatch(typeof(BuddyInfoManagerBehavior), nameof(BuddyInfoManagerBehavior.SetProfileInfo2))]
+        private static void Picked2(BuddyInfoManagerBehavior __instance) { RememberPick(__instance, 1); }
+        [HarmonyPrefix, HarmonyPatch(typeof(BuddyInfoManagerBehavior), nameof(BuddyInfoManagerBehavior.SetProfileInfo3))]
+        private static void Picked3(BuddyInfoManagerBehavior __instance) { RememberPick(__instance, 2); }
+
+        private static void RememberPick(BuddyInfoManagerBehavior b, int i)
+        {
+            int state = Traverse.Create(b).Field("infoEditState").GetValue<int>();
+            TextLinkButton[] labels = state == 1 ? b.profile1Labels : state == 2 ? b.profile2Labels : state == 3 ? b.profile3Labels : null;
+            _picked = labels != null && i < labels.Length ? Ui.Text(labels[i].GetComponent<TMP_Text>()) : null;
+            if (_picked != null && _picked.Length > 3 && char.IsDigit(_picked[0])) _picked = _picked.Substring(3);   // "1. snow patrol"
+        }
+
         [HarmonyPostfix, HarmonyPatch(typeof(BuddyInfoManagerBehavior), nameof(BuddyInfoManagerBehavior.ShowNextProfileButtons))]
         private static void ProfileQuestion(BuddyInfoManagerBehavior __instance)
         {
             int state = Traverse.Create(__instance).Field("infoEditState").GetValue<int>();   // already moved on
             TextLinkButton[] labels = state == 1 ? __instance.profile1Labels : state == 2 ? __instance.profile2Labels : state == 3 ? __instance.profile3Labels : null;
-            string info = Ui.Text(__instance.infoLabel);
+            string picked = _picked != null ? "Picked " + Tell.Stop(_picked) + " " : "";
+            _picked = null;
             if (labels == null)
             {
-                Tell.Queue("Profile done. " + Tell.Stop(info));
+                Tell.Now(picked + "Your profile is done. Your buddies can message you now; you'll hear them, and Tab opens their chat. "
+                         + "Your buddy list is on the left: use Up and Down to hear who's online.");
+                ProfileFirst.ProfileFinished();
                 return;
             }
             var sb = new StringBuilder();
@@ -345,21 +376,13 @@ namespace EmilyIsAwayTooAccess
                 string t = Ui.Text(l.GetComponent<TMP_Text>());
                 if (t.Length > 0) sb.Append(Tell.Stop(t) + " ");
             }
-            string intro = state == 1
-                ? "This is your profile, with your buddy list beside it. Fill in your profile: pick some music, then a movie, then a saying, each with 1, 2 or 3. "
-                  + "Your buddies start messaging you after your first pick; you'll hear them, and Tab opens their chat. "
-                : "";
-            string what = state == 1 ? "Music: " : state == 2 ? "Movie: " : "Saying: ";
-            Tell.Queue(intro + (state > 1 && info.Length > 0 ? "Profile so far: " + Tell.Stop(info) + " " : "") + what + sb.ToString().Trim());
-        }
-
-        [HarmonyPostfix, HarmonyPatch(typeof(ApplicationManagerBehavior), nameof(ApplicationManagerBehavior.ShowBuddyList))]
-        private static void BuddyList(ApplicationManagerBehavior __instance)
-        {
-            var sb = new StringBuilder("Buddy list: ");
-            foreach (BuddyListRowBehavior r in __instance.buddyListManager.buddyRows)
-                if (!r.IsHidden && !string.IsNullOrEmpty(r.Screenname)) sb.Append(r.Screenname + ", " + Ui.Text(r.statusLabel) + ". ");
-            Tell.Queue(sb.ToString());
+            string intro = state == 1 ? "Now your profile. Answer three questions with 1, 2 or 3. " : "";
+            string say = picked + intro + Question[state] + ": " + sb.ToString().Trim();
+            if (state == 1) Tell.Queue(say);   // after "Icon set to ..."
+            else Tell.Now(say);
+            // Arrow keys start on this question's first answer.
+            GameObject first = labels[0].gameObject;
+            ScreenWatch.Later(0.1f, () => Navigator.Instance.FocusOn(first, false));
         }
 
         [HarmonyPostfix, HarmonyPatch(typeof(ApplicationManagerBehavior), nameof(ApplicationManagerBehavior.ShowBuddyInfo))]

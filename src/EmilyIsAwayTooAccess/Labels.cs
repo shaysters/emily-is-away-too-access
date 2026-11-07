@@ -74,7 +74,13 @@ namespace EmilyIsAwayTooAccess
         public static string Name(Control c)
         {
             Component t = c.Target;
-            if (c.Type == Control.Kind.Link) return Ui.Text(t.GetComponent<TMP_Text>());
+            if (c.Type == Control.Kind.Link)
+            {
+                // Profile answers say which question they're for: "Movie: 2. the departed".
+                BuddyInfoManagerBehavior b = t.GetComponentInParent<BuddyInfoManagerBehavior>();
+                string q = b != null ? ScreenPatches.QuestionFor(b, (TextLinkButton)t) : null;
+                return (q != null ? q + ": " : "") + Ui.Text(t.GetComponent<TMP_Text>());
+            }
             if (c.Type == Control.Kind.ProfileLink) return Traverse.Create(t).Field("linkText").GetValue<string>() ?? "link";
 
             BuddyListRowBehavior row = t.GetComponentInParent<BuddyListRowBehavior>();

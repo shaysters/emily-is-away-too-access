@@ -4,7 +4,8 @@
 
 ### Changed
 
-- After you pick your buddy icon, the mod explains the profile screen: pick music, a movie and a saying with 1, 2 or 3, and your buddies start messaging after the first pick. Each question says what it's for (Music, Movie, Saying). "Icon set to" no longer cuts this off.
+- The profile at the start of each chapter goes one step at a time. After "Icon set to", each question (music, movie, saying) is read on its own when it's your turn, with what you picked, and the arrow keys start on its answers. Each answer says its question ("Movie: 2. the departed"). The buddy list is no longer read out at that point.
+- The chats now wait until your profile is finished (or until you leave the profile window), so messages don't talk over the questions.
 - Emily Online: "is typing" is now read for any buddy, open chat or not, whenever Steam sends it (it no longer depends on the game showing it). In testing, Steam didn't send typing notices between two Emily Online players, so the game can't show them either.
 
 ## 1.0.2 (2026-11-07)
