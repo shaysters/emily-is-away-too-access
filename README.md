@@ -4,7 +4,7 @@ Emily is Away Too Access is a mod that makes Emily is Away Too, the instant-mess
 
 It works with NVDA, JAWS and other Windows screen readers, and falls back to Windows' built-in voices if no screen reader is running.
 
-It also covers Emily Online, the real instant messenger for chatting with your Steam friends that comes with the game.
+It also makes Emily Online accessible: the real instant messenger that comes with the game, for chatting with your Steam friends who own it. You hear your buddy list of Steam friends with their statuses, every message as it arrives, each letter as you type in the message box, the emotes by name, warnings and profiles.
 
 - Join the Discord to chat, get help or report problems: <https://discord.gg/KNDXhztGGK>
 - Support Shaysters on Ko-fi: <https://ko-fi.com/shaysters>
@@ -13,6 +13,7 @@ It also covers Emily Online, the real instant messenger for chatting with your S
 
 - Emily is Away Too for Windows, from Steam: <https://store.steampowered.com/app/523780/Emily_is_Away_Too/>
 - A screen reader such as NVDA or JAWS (optional; without one, the mod uses Windows' built-in speech).
+- For Emily Online: Steam running, Steam chat allowed on your account, and friends who own the game to chat with.
 
 ## Installing
 
@@ -78,8 +79,7 @@ Emily is Away Too comes with Emily Online, a real instant messenger for chatting
 - **Emotes:** the Emotes button opens the game's eight smileys (laughing, yelling, winking, tongue out, cool with sunglasses, smiling, crying, kiss). Pick one and it goes into your message. Emotes in messages are read by name.
 - **Warn:** the Warn button warns your buddy, the way old messengers did. If buddies warn you too much you can't send for a minute; your warning level is read when it changes.
 - **Profiles:** Buddy's profile and Your profile read the profile. On yours, "edit profile" lets you pick a ready-made profile (each one is read when you pick it) or write your own, then "save profile".
-- **Keys:** the message box has the keyboard, so the mod's letter keys work with Ctrl in Emily Online: Ctrl+R repeats, Ctrl+W says who you're chatting with and what you've typed, Ctrl+I opens your buddy's profile, Ctrl+M opens the mod settings. Page Up, Page Down, Ctrl+Home and Ctrl+End read back through the chat.
-- **Settings (Ctrl+M):** read messages from buddies whose chat isn't open (on), read status changes (only the buddy you're chatting with, every buddy, or off), read when a buddy is typing (on), read your own messages when sent (off; you hear "Sent.").
+- **Keys and settings:** see the Emily Online parts of Keys and Settings below.
 
 ## Keys
 
@@ -104,6 +104,21 @@ Emily is Away Too comes with Emily Online, a real instant messenger for chatting
 | r | Everywhere | Repeat the last thing the mod said. |
 | m | Everywhere | Open or close the mod's settings. |
 
+In Emily Online the message box has the keyboard, so the mod's letter keys go with Ctrl there:
+
+| Key | Where | What it does |
+|---|---|---|
+| Up and Down, Home and End | Emily Online | Move through the buddy list and the window's controls. |
+| Enter | Buddy list | Open a chat with the buddy. |
+| Any key | Message box | Type your message; each letter is read. |
+| Enter | Message box | Send the message (the game's own key). |
+| Page Up and Page Down | Chat | Read the previous or next line of the chat. |
+| Ctrl+Home and Ctrl+End | Chat | Read the first or latest line. |
+| Ctrl+R | Emily Online | Repeat the last thing the mod said. |
+| Ctrl+W | Chat | Who you're chatting with, their status, and what you've typed so far. |
+| Ctrl+I | Chat | Open your buddy's profile. |
+| Ctrl+M | Emily Online | Open or close the mod's settings. |
+
 Notes:
 
 - While you type a reply, every key also types a letter of it in the game, including the mod's keys. That's harmless: the reply is already decided, and nothing is sent until you press Enter. Up, Down, Home and End move around the controls instead of typing.
@@ -122,6 +137,17 @@ Press **m** anywhere in the game, except while typing in a text box or typing yo
 - **Read when a buddy is typing** (on): read "is typing..." and "is deleting...".
 
 The game's own settings (window size, type assist, sounds, reinstall) are on the main menu's Settings button. Type assist makes your character type replies by themself.
+
+### Emily Online settings
+
+Press **Ctrl+M** in Emily Online (or **m** when you're not in the message box). The keys work the same way, and the message box gets the keyboard back when you close the list.
+
+- **Read messages from buddies whose chat isn't open** (on): read them with the buddy's name as they arrive.
+- **Read status changes** (only the buddy you're chatting with): when buddies sign in, sign out or go away. You can choose every buddy, or off; with many Steam friends, every buddy can get busy.
+- **Read when a buddy is typing** (on).
+- **Read your own messages when sent** (off): with this off you hear "Sent." instead.
+
+Emily Online's own Settings button (sounds and window size) is at the bottom of the buddy list.
 
 ## Troubleshooting
 
