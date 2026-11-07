@@ -7,7 +7,7 @@ It works with NVDA, JAWS and other Windows screen readers, and falls back to Win
 It also covers Emily Online, the real instant messenger for chatting with your Steam friends that comes with the game.
 
 - Join the Discord to chat, get help or report problems: <https://discord.gg/KNDXhztGGK>
-- Support shaysters on Ko-fi: <https://ko-fi.com/shaysters>
+- Support Shaysters on Ko-fi: <https://ko-fi.com/shaysters>
 
 ## Requirements
 
