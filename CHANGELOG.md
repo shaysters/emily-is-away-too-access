@@ -8,6 +8,10 @@
 - The chats now wait until your profile is finished (or until you leave the profile window), so messages don't talk over the questions.
 - Emily Online: "is typing" is now read for any buddy, open chat or not, whenever Steam sends it (it no longer depends on the game showing it). In testing, Steam didn't send typing notices between two Emily Online players, so the game can't show them either.
 
+### Fixed
+
+- Keys that belong to your screen reader or Windows no longer type your reply: the NVDA key (Insert or Caps Lock), Shift, Ctrl, Alt, the Windows key, Escape, Tab and the F keys. Before, the game counted any key as typing, so in NVDA's sleep mode NVDA commands typed letters instead (holding them typed on and on).
+
 ## 1.0.2 (2026-11-07)
 
 ### Added

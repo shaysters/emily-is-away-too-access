@@ -123,6 +123,7 @@ Notes:
 
 - While a reply is being typed (from picking it until it's sent), every key types it, and the mod's keys stay quiet. To use a mod key then, hold Ctrl: Ctrl+C, Ctrl+T, Ctrl+W, Ctrl+L, Ctrl+I, Ctrl+R and Ctrl+M work, and so do Ctrl with Up, Down, Home and End to move around the controls. The same goes while you're typing in a text box or typing your own answer. Page Up and Page Down always read back through the chat.
 - When a reply is ready to send, Enter sends it.
+- Keys that belong to your screen reader or Windows never type your reply: the NVDA key (Insert or Caps Lock), Shift, Ctrl, Alt, the Windows key, Escape, Tab and the F keys. So NVDA commands work while you type, including in NVDA's sleep mode.
 
 ## Settings
 
