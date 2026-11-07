@@ -46,6 +46,7 @@ namespace EmilyIsAwayTooAccess
 
             if (c.FreeTyping)
             {
+                if (!Settings.EchoLetters.On) { t.Ready = ready; return; }
                 if (now.Length == old.Length + 1 && now.StartsWith(old)) Tell.Now(Keys.SayChar(now[now.Length - 1]));
                 else if (old.Length == now.Length + 1 && old.StartsWith(now)) Tell.Now(Keys.SayChar(old[old.Length - 1]) + " erased");
                 else Tell.Now(now.Length == 0 ? "blank" : now);

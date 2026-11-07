@@ -135,6 +135,7 @@ Press **m** anywhere in the game, or **Ctrl+M** while you're typing (a reply, a 
 - **Read erased text** (on).
 - **Read the finished message before sending** (on): say "Ready to send" and the whole message. With this off, your message is read when it's sent instead.
 - **Read when a buddy is typing** (on): read "is typing..." and "is deleting...".
+- **Read each letter you type in text boxes and your own answers** (on): in the sign-in boxes, the code box and answers like the nickname. If your screen reader already says the keys you type, turn this off to stop hearing each letter twice.
 
 The game's own settings (window size, type assist, sounds, reinstall) are on the main menu's Settings button. Type assist makes your character type replies by themself.
 
@@ -142,6 +143,7 @@ The game's own settings (window size, type assist, sounds, reinstall) are on the
 
 Press **Ctrl+M** in Emily Online (or **m** when you're not in the message box). The keys work the same way, and the message box gets the keyboard back when you close the list.
 
+- **Read each letter as you type** (on): each letter in the message box. If your screen reader already says the keys you type, turn this off to stop hearing each letter twice.
 - **Read messages from buddies whose chat isn't open** (on): read them with the buddy's name as they arrive.
 - **Read status changes** (only the buddy you're chatting with): when buddies sign in, sign out or go away. You can choose every buddy, or off; with many Steam friends, every buddy can get busy.
 - **Read when a buddy is typing** (on).

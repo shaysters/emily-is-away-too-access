@@ -39,10 +39,11 @@ namespace EmilyIsAwayTooAccess
         public static readonly Setting ReadErased = new Setting("ReadErased", "Read erased text", 1, OffOn);
         public static readonly Setting ReadReady = new Setting("ReadReady", "Read the finished message before sending", 1, OffOn);
         public static readonly Setting BuddyTyping = new Setting("BuddyTyping", "Read when a buddy is typing", 1, OffOn);
+        public static readonly Setting EchoLetters = new Setting("EchoLetters", "Read each letter you type in text boxes and your own answers", 1, OffOn);
 
         public static readonly List<Setting> All = new List<Setting>
         {
-            ReplyTimer, TimerWarnings, OtherWindow, ReadWords, ReadErased, ReadReady, BuddyTyping,
+            ReplyTimer, TimerWarnings, OtherWindow, ReadWords, ReadErased, ReadReady, BuddyTyping, EchoLetters,
         };
 
         // Speech off (test runs only; not a menu option).

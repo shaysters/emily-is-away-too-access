@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 (2026-11-07)
+
+### Added
+
+- A setting to stop the mod reading each letter you type (Emily Online's message box, the sign-in and code boxes, and your own answers), for screen readers that already say typed keys. It's the first item in Emily Online's settings.
+
 ## 1.0.1 (2026-11-07)
 
 ### Changed

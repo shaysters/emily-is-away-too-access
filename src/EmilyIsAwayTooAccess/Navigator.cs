@@ -274,6 +274,7 @@ namespace EmilyIsAwayTooAccess
             string old = _boxText ?? "";
             string now = Ui.BoxText(box) ?? "";
             _boxText = now;
+            if (!Settings.EchoLetters.On) return;   // the player's screen reader may already say typed keys
             if (now.Length == old.Length + 1 && now.StartsWith(old)) Tell.Now(Keys.SayChar(now[now.Length - 1]));
             else if (old.Length == now.Length + 1 && old.StartsWith(now)) Tell.Now(Keys.SayChar(old[old.Length - 1]) + " deleted");
             else if (now.Length > old.Length && now.StartsWith(old)) Tell.Now(now.Substring(old.Length));   // an emote or pasted text

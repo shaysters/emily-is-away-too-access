@@ -14,7 +14,7 @@
     <RootNamespace>EmilyIsAwayTooAccess</RootNamespace>
     <LangVersion>7.3</LangVersion>
     <Nullable>disable</Nullable>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <!-- The test driver (TestDriver.cs) lives only in the private dev repo. -->

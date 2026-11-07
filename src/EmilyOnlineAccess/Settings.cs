@@ -33,8 +33,9 @@ namespace EmilyIsAwayTooAccess
             "off", "only the buddy you're chatting with", "every buddy");
         public static readonly Setting BuddyTyping = new Setting("BuddyTyping", "Read when a buddy is typing", 1, OffOn);
         public static readonly Setting OwnSent = new Setting("OwnSent", "Read your own messages when sent", 0, OffOn);
+        public static readonly Setting EchoLetters = new Setting("EchoLetters", "Read each letter as you type", 1, OffOn);
 
-        public static readonly List<Setting> All = new List<Setting> { OtherChats, Statuses, BuddyTyping, OwnSent };
+        public static readonly List<Setting> All = new List<Setting> { EchoLetters, OtherChats, Statuses, BuddyTyping, OwnSent };
 
         public static bool Muted;
 
