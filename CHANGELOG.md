@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3 (2026-11-07)
+
+### Changed
+
+- After you pick your buddy icon, the mod explains the profile screen: pick music, a movie and a saying with 1, 2 or 3, and your buddies start messaging after the first pick. Each question says what it's for (Music, Movie, Saying). "Icon set to" no longer cuts this off.
+- Emily Online: "is typing" is now read for any buddy, open chat or not, whenever Steam sends it (it no longer depends on the game showing it). In testing, Steam didn't send typing notices between two Emily Online players, so the game can't show them either.
+
 ## 1.0.2 (2026-11-07)
 
 ### Added

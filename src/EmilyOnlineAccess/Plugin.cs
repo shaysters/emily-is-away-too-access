@@ -11,7 +11,7 @@ namespace EmilyIsAwayTooAccess
     {
         public const string Id = "shaysters.emilyonline.access";
         public const string Title = "Emily Online Access";
-        public const string Version = "1.0.2";
+        public const string Version = "1.0.3";
 
         internal static ManualLogSource Log;
 

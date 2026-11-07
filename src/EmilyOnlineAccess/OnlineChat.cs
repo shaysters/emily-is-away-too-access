@@ -144,7 +144,11 @@ namespace EmilyIsAwayTooAccess
         [HarmonyPostfix, HarmonyPatch(typeof(ApplicationManagerBehavior), "StoreChatMessage")]
         private static void Stored(CSteamID friend, ChatMessageDehydrated chatMessage)
         {
-            try { OnlineChat.Stored(friend, chatMessage); }
+            try
+            {
+                if (chatMessage.messageType == ChatMessageType.OtherMessage) MessageArrived(friend);
+                OnlineChat.Stored(friend, chatMessage);
+            }
             catch (Exception e) { Plugin.Log.LogError("Chat line: " + e); }
         }
 
@@ -163,16 +167,29 @@ namespace EmilyIsAwayTooAccess
                      + " Type your message and press Enter to send.");
         }
 
-        // "is typing..."
-        [HarmonyPostfix, HarmonyPatch(typeof(ChatManagerBehavior), nameof(ChatManagerBehavior.ShowTypingAction))]
-        private static void Typing(ChatManagerBehavior __instance)
+        // "is typing...": read straight from Steam's chat events, for any buddy. (The game
+        // itself only shows it for the open chat, and not within a second of a message.)
+        private static readonly Dictionary<ulong, float> TypingSaid = new Dictionary<ulong, float>();
+
+        [HarmonyPostfix, HarmonyPatch(typeof(SteamFriends), nameof(SteamFriends.GetFriendMessage))]
+        private static void SteamChatEvent(CSteamID steamIDFriend, EChatEntryType peChatEntryType)
         {
-            ScreenWatch.Later(0.05f, () =>
+            try
             {
-                string t = Ui.Text(__instance.typingLabel);
-                if (t.Length > 0 && Settings.BuddyTyping.On) Tell.Queue(t);
-            });
+                Plugin.Log.LogInfo("Steam chat event: " + peChatEntryType + " from " + steamIDFriend.m_SteamID);
+                if (peChatEntryType != EChatEntryType.k_EChatEntryTypeTyping || !Settings.BuddyTyping.On) return;
+                bool open = OnlineChat.IsOpen(steamIDFriend);
+                if (!open && !Settings.OtherChats.On) return;
+                float last;
+                if (TypingSaid.TryGetValue(steamIDFriend.m_SteamID, out last) && Time.unscaledTime - last < 4f) return;   // once per burst
+                TypingSaid[steamIDFriend.m_SteamID] = Time.unscaledTime;
+                Tell.Queue(SteamFriends.GetFriendPersonaName(steamIDFriend) + " is typing.");
+            }
+            catch (Exception e) { Plugin.Log.LogError("Typing: " + e); }
         }
+
+        // A message arrived: the next typing is a new burst.
+        public static void MessageArrived(CSteamID id) { TypingSaid.Remove(id.m_SteamID); }
 
         // Your warning level (when a buddy warns you) shows under the chat.
         [HarmonyPostfix, HarmonyPatch(typeof(ChatManagerBehavior), nameof(ChatManagerBehavior.RateLimitPlayer))]

@@ -319,8 +319,13 @@ namespace EmilyIsAwayTooAccess
         [HarmonyPostfix, HarmonyPatch(typeof(BuddyIconSettingsBehavior), nameof(BuddyIconSettingsBehavior.DidPressRightButton))]
         private static void IconPageRight(BuddyIconSettingsBehavior __instance) { Tell.Now(Tell.Stop(Ui.Text(__instance.titleLabel))); }
 
-        [HarmonyPostfix, HarmonyPatch(typeof(BuddyIconButtonBehavior), nameof(BuddyIconButtonBehavior.DidPressIcon))]
-        private static void IconPicked() { Tell.Now("Icon set to " + Icons.Name(ChatValues.GetPlayerBuddyIcon()) + "."); }
+        // Said before the game opens your profile, so it doesn't cut off the profile prompt.
+        [HarmonyPrefix, HarmonyPatch(typeof(BuddyIconButtonBehavior), nameof(BuddyIconButtonBehavior.DidPressIcon))]
+        private static void IconPicked(BuddyIconButtonBehavior __instance)
+        {
+            BuddyIconType t = Traverse.Create(__instance).Field("iconType").GetValue<BuddyIconType>();
+            Tell.Now("Icon set to " + Icons.Name(t) + ".");
+        }
 
         // Filling in your profile: three questions answered with 1, 2, 3.
         [HarmonyPostfix, HarmonyPatch(typeof(BuddyInfoManagerBehavior), nameof(BuddyInfoManagerBehavior.ShowNextProfileButtons))]
@@ -340,8 +345,12 @@ namespace EmilyIsAwayTooAccess
                 string t = Ui.Text(l.GetComponent<TMP_Text>());
                 if (t.Length > 0) sb.Append(Tell.Stop(t) + " ");
             }
-            string intro = state == 1 ? "Fill in your profile, press 1, 2 or 3. " : "";
-            Tell.Queue(intro + (state > 1 && info.Length > 0 ? "Profile so far: " + Tell.Stop(info) + " " : "") + "Choices: " + sb.ToString().Trim());
+            string intro = state == 1
+                ? "This is your profile, with your buddy list beside it. Fill in your profile: pick some music, then a movie, then a saying, each with 1, 2 or 3. "
+                  + "Your buddies start messaging you after your first pick; you'll hear them, and Tab opens their chat. "
+                : "";
+            string what = state == 1 ? "Music: " : state == 2 ? "Movie: " : "Saying: ";
+            Tell.Queue(intro + (state > 1 && info.Length > 0 ? "Profile so far: " + Tell.Stop(info) + " " : "") + what + sb.ToString().Trim());
         }
 
         [HarmonyPostfix, HarmonyPatch(typeof(ApplicationManagerBehavior), nameof(ApplicationManagerBehavior.ShowBuddyList))]
