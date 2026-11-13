@@ -11,7 +11,7 @@ It also makes Emily Online accessible: the real instant messenger that comes wit
 
 ## Requirements
 
-- Emily is Away Too for Windows, from Steam: <https://store.steampowered.com/app/523780/Emily_is_Away_Too/>
+- Emily is Away Too for Windows, from Steam (<https://store.steampowered.com/app/523780/Emily_is_Away_Too/>). The itch.io purchase (<https://kyleseeley23.itch.io/emilyisawaytoo>) comes with a Steam key and a DRM-free download; the mod should work with the DRM-free download too but hasn't been tested with it yet. Emily Online needs Steam.
 - A screen reader such as NVDA or JAWS (optional; without one, the mod uses Windows' built-in speech).
 - For Emily Online: Steam running, Steam chat allowed on your account, and friends who own the game to chat with.
 
@@ -24,6 +24,10 @@ It also makes Emily Online accessible: the real instant messenger that comes wit
 5. Start Emily is Away Too from Steam as usual. Steam asks whether to play Emily is Away Too or Emily Online. Either way, the mod says it's loaded: "Emily is Away Too Access 1.0 loaded" or "Emily Online Access 1.0 loaded".
 
 If the installer won't start and mentions `VCRUNTIME140.dll`, install the [Microsoft Visual C++ Redistributable (x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe) and try again.
+
+### Copies from outside Steam
+
+For the DRM-free itch.io download, use the installer's Browse button and choose the folder that contains `EmilyIsAwayToo.exe`. The installer says this copy hasn't been tested, and installs after you confirm. If something doesn't work on it, please tell us on the Discord or in a GitHub issue.
 
 ### Updating and uninstalling
 

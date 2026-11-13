@@ -15,7 +15,7 @@
     <RootNamespace>EmilyIsAwayTooAccess</RootNamespace>
     <LangVersion>7.3</LangVersion>
     <Nullable>disable</Nullable>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <DefineConstants>$(DefineConstants);EMILY_ONLINE</DefineConstants>
@@ -43,6 +43,7 @@
     <Compile Include="..\EmilyIsAwayTooAccess\Ui.cs" Link="Shared\Ui.cs" />
     <Compile Include="..\EmilyIsAwayTooAccess\Navigator.cs" Link="Shared\Navigator.cs" />
     <Compile Include="..\EmilyIsAwayTooAccess\Icons.cs" Link="Shared\Icons.cs" />
+    <Compile Include="..\EmilyIsAwayTooAccess\SafePatch.cs" Link="Shared\SafePatch.cs" />
   </ItemGroup>
 
   <ItemGroup>

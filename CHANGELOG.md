@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4 (2026-11-12)
+
+### Changed
+
+- The mods now apply their game hooks one group at a time, so a hook that can't apply on some copy of the game is skipped and the rest still works. This is for copies of the game from outside Steam, such as the itch.io download (not tested yet; Emily Online needs Steam either way).
+
 ## 1.0.3 (2026-11-07)
 
 ### Changed
